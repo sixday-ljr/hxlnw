@@ -145,7 +145,6 @@ page {
     align-items: center;
 	// margin-left: 91rpx;
 }
-
 .c-flex-center {
     display: flex;
     align-items: center;
@@ -153,7 +152,7 @@ page {
     flex-direction: column;
 }
 .filter-wrapper {
-    position: fixed;
+    // position: fixed;
     left: 0;
     width: 750rpx;
     z-index: 999;
@@ -206,8 +205,8 @@ page {
             position: relative;
             max-height: 500rpx;
             background-color: #fff;
-            border-bottom-left-radius: 20rpx;
-            border-bottom-right-radius: 20rpx;
+            // border-bottom-left-radius: 20rpx;
+            // border-bottom-right-radius: 20rpx;
             overflow: scroll;
             z-index: 999;
             transition: all 1s linear;

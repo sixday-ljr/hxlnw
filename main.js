@@ -1,4 +1,8 @@
 import App from './App'
+import request from 'unitl/request.js'
+Vue.prototype.$request = Request
+
+
 
 // #ifndef VUE3
 import Vue from 'vue'

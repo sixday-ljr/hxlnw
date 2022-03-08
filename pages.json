@@ -17,8 +17,34 @@
 				"enablePullDownRefresh": false
 			}
 
+		}, {
+			"path": "pages/enjoy/activedetail",
+			"style": {
+				"navigationBarTitleText": "",
+				"app-plus": {
+					// #ifdef H5
+					"titleNView": false
+					// #endif
+				},
+				"enablePullDownRefresh": false
+			}
+
 		}
-	],
+	    ,{
+            "path" : "pages/mycollect/mycollect",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "",
+				"app-plus": {
+					// #ifdef H5
+					"titleNView": false
+					// #endif
+				},
+                "enablePullDownRefresh": false
+            }
+            
+        }
+    ],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
 		"navigationBarTitleText": "uni-app",
