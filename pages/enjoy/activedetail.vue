@@ -18,8 +18,8 @@
 				<view class="img">
 					<image src="../../static/enjoy/02001120008ds0m5a8111_R_300_225_R5_Q70_D.jpg" mode=""></image>
 					<view class="radio">
-						<view></view>
-						<view></view>
+						<view @click="video()"></view>
+						<view @click="camera()"></view>
 						<text>20</text>
 					</view>
 				</view>
@@ -111,7 +111,7 @@
 					<view></view>
 					<text>活动时间</text>
 				</view>
-				<view class="time2">2022-02-28 00:00:00  <view>至</view>  2022-03-10 00:00:00</view>
+				<view class="time2">2022-02-28 00:00:00 <view>至</view> 2022-03-10 00:00:00</view>
 			</view>
 			<view class="other_location">
 				<view class="location1">
@@ -130,26 +130,34 @@
 				<view class="shop2">0451-8856889</view>
 			</view>
 		</view>
-        <view class="a" style="height: 250rpx;width: 100%;"></view>
+		<view class="a" style="height: 250rpx;width: 100%;"></view>
 		<view class="active_bot">
-             <view>
-				 <image src="../../static/enjoy/fenxiang.png" mode=""></image>
-				 <text>分享</text>
-			 </view>
-             <view @click="star()">
-				 <image src="../../static/enjoy/star.png" mode=""></image>
-				 <text>收藏</text>
-			 </view>
-             <view class="mendian">
-				 <image  src="../../static/enjoy/位置标记@2x.png" mode=""></image>
-				 <text>查看门店地址</text>
-			 </view>
+			<view>
+				<image src="../../static/enjoy/fenxiang.png" mode=""></image>
+				<text>分享</text>
+			</view>
+			<view @click="star()">
+				<image src="../../static/enjoy/star.png" mode=""></image>
+				<text>收藏</text>
+			</view>
+			<view class="mendian">
+				<image src="../../static/enjoy/位置标记@2x.png" mode=""></image>
+				<text>查看门店地址</text>
+			</view>
 		</view>
+		<!-- 弹层 -->
+		
+		
+
 	</view>
 </template>
 
 <script>
+	
 	export default {
+		components: {
+			
+		},
 		data() {
 			return {
 
@@ -165,9 +173,20 @@
 					delta: 1
 				})
 			},
-			star(){
-				
+			star() {
+
+			},
+			video(){
+				uni.getVideoInfo(
+				  // url:url,
+				)
+			},
+			camera(){
+				uni.createCameraContext(
+				       
+				)
 			}
+
 		}
 	}
 </script>
@@ -178,6 +197,11 @@
 		background-color: #F0F1F1;
 
 	}
+
+
+
+	/* 弹层 */
+
 
 	/* 标题 */
 	.active_title {
@@ -293,7 +317,7 @@
 	.radio>text {
 		color: #FFFFFF;
 		font-size: 40rpx;
-		
+
 		line-height: 60rpx;
 		display: block;
 	}
@@ -426,13 +450,15 @@
 	.other_time,
 	.other_location,
 	.shop_phone {
-		padding: 36rpx  0rpx;
+		padding: 36rpx 0rpx;
 		/* padding-bottom: 36rpx; */
 		border-bottom: 1rpx solid #C1BABA;
 	}
-    .shop_phone{
+
+	.shop_phone {
 		border-bottom: none;
 	}
+
 	.shop1,
 	.location1,
 	.time1 {
@@ -461,12 +487,16 @@
 		margin-left: 33rpx;
 		align-self: center;
 	}
-	.shop1>text,.location1>text,.time1>text{
-			font-size: 44rpx;
-			color: #333333;
-		
+
+	.shop1>text,
+	.location1>text,
+	.time1>text {
+		font-size: 44rpx;
+		color: #333333;
+
 	}
-	.time2{
+
+	.time2 {
 		display: flex;
 		flex-direction: column;
 		align-items: center;
@@ -474,17 +504,19 @@
 		font-size: 40rpx;
 		color: #7A7A7A;
 	}
-     .location_text{
+
+	.location_text {
 		font-size: 40rpx;
 		color: #7A7A7A;
 		margin: 24rpx 44rpx 0rpx 100rpx;
-	 }
-   .shop2{
-	   text-align: center;
-	   font-size: 40rpx;
-	   color: #7A7A7A;
-	   margin-top: 20rpx;
-   }
+	}
+
+	.shop2 {
+		text-align: center;
+		font-size: 40rpx;
+		color: #7A7A7A;
+		margin-top: 20rpx;
+	}
 
 
 	/* 底部栏 */
@@ -498,16 +530,20 @@
 		padding-top: 42rpx;
 		justify-content: space-around;
 	}
-	.active_bot>view>text{
+
+	.active_bot>view>text {
 		/* text-align: center; */
 	}
-	.active_bot>view:nth-child(1)>image,.active_bot>view:nth-child(2)>image{
+
+	.active_bot>view:nth-child(1)>image,
+	.active_bot>view:nth-child(2)>image {
 		width: 50rpx;
 		height: 50rpx;
 		display: block;
 		margin: auto;
 	}
-	.mendian{
+
+	.mendian {
 		width: 446rpx;
 		height: 100rpx;
 		display: flex;
@@ -516,21 +552,19 @@
 		background-color: #FF352B;
 		border-radius: 20rpx;
 	}
-	.mendian>image{
+
+	.mendian>image {
 		width: 28rpx;
 		height: 42rpx;
 		display: block;
 		margin-left: 50rpx;
 		align-self: center;
 	}
-	.mendian>text{
+
+	.mendian>text {
 		font-size: 50rpx;
 		color: #FFFFFF;
 		margin-right: 50rpx;
 		line-height: 100rpx;
 	}
-	
-	
-	
-	
 </style>

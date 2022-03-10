@@ -1,6 +1,8 @@
 import App from './App'
-import request from 'unitl/request.js'
+import Request from 'unitl/request.js'
+import http from './unitl/http.js'
 Vue.prototype.$request = Request
+Vue.prototype.$http = http
 
 
 
@@ -11,6 +13,7 @@ App.mpType = 'app'
 const app = new Vue({
     ...App
 })
+
 app.$mount()
 // #endif
 

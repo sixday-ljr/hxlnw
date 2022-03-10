@@ -23,10 +23,12 @@
 				"navigationBarTitleText": "",
 				"app-plus": {
 					// #ifdef H5
-					"titleNView": false
+					"titleNView": false //禁用原生导航栏
+					  //移动端隐藏滚动条
 					// #endif
 				},
 				"enablePullDownRefresh": false
+				
 			}
 
 		}
@@ -44,11 +46,90 @@
             }
             
         }
+        ,{
+            "path" : "pages/collectlist/collectlist",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "",
+				"app-plus": {
+					// #ifdef H5
+					"titleNView": false
+					// #endif
+				},
+                "enablePullDownRefresh": false
+            }
+            
+        }
+        ,{
+            "path" : "pages/sort/sort",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "",
+				"app-plus": {
+					// #ifdef H5
+					"titleNView": false
+					// #endif
+				},
+                "enablePullDownRefresh": false
+            }
+            
+        }
+        ,{
+            "path" : "pages/news/news",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+        ,{
+            "path" : "pages/newsList/newsList",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+        ,{
+            "path" : "pages/newsdetail/newsDetail",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "",
+                "enablePullDownRefresh": false
+            }
+            
+        },
+		{
+		    "path" : "pages/AD/AD",
+		    "style" :                                                                                    
+		    {
+		        "navigationBarTitleText": "",
+		        "enablePullDownRefresh": false
+		    }
+		    
+		}
+        ,{
+            "path" : "pages/newsone/newsone",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "",
+                "enablePullDownRefresh": false
+            }
+            
+        }
     ],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
 		"navigationBarTitleText": "uni-app",
 		"navigationBarBackgroundColor": "#F8F8F8",
-		"backgroundColor": "#F8F8F8"
+		"backgroundColor": "#F8F8F8",
+		"app-plus": {
+			// #ifdef H5
+			"titleNView": false,
+			// #endif
+			"scrollIndicator":"none"
+		}
 	}
 }

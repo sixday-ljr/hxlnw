@@ -1,5 +1,5 @@
-const baseUrl = ''  
-const request = (url = '', date = {}, type = 'POST', header = {
+const baseUrl = 'http://xpl.hxlnw.com.cn/api/'  
+const request = (url = '', data = {}, type = 'POST', header = {
 }) => {
     return new Promise((resolve, reject) => {
         uni.request({
