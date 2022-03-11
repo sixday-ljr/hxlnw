@@ -18,36 +18,14 @@
 			</view>
 		</view>
 		<view class="audio">
-			<zaudio theme="theme1"></zaudio>
-			<!-- <view class="audio_top">
-				<view class="audio_img">
-					<image src="../../static/listen-news/erji.png" mode=""></image>
-				</view>
-				<view class="audio_right">
-					<view>
-						<image src="../../static/listen-news/上一个@3x.png" mode=""></image>
-						<text>上一个</text>
-					</view>
-					<view class="center">
-						<view v-if="zanting(img)" class="center_img">
-							<image src="../../static/listen-news/zanting@2.png" mode=""></image>
-							<text>暂停</text>
-						</view>
-						<view v-else>
-							<image src="../../static/listen-news/bofang2@3.png" mode=""></image>
-							<text>播放</text>
-						</view>
-					</view>
-					<view>
-						<image src="../../static/listen-news/next@3.png" mode=""></image>
-						<text>下一个</text>
-					</view>
-				</view>
+			<audio class="audio_main" :src="current.src" :poster="current.poster" :name="current.name"
+				:author="current.author" :action="audioAction" controls></audio>
+			<view class="bofang">
+				<image src="../../components/uniapp-zaudio/static/shangyige.png" mode=""></image>
+				<image src="../../components/uniapp-zaudio/static/bofang.png" mode=""></image>
+				<image @click="audio_previous()" src="../../components/uniapp-zaudio/static/xiayige.png" mode=""></image>
 			</view>
-			<view class="audio_bot">
-				<view class="audio_botleft">多年内地调整公积金</view>
-				<view></view>
-			</view> -->
+
 		</view>
 		<view class="aa" style="width: 100%;height: 226rpx;"></view>
 	</view>
@@ -60,27 +38,46 @@
 				data1: {
 					"params": {
 						"category_id": 2,
+						"sort": "3"
 					}
 				},
+				sortId:'',
+
+				audioAction: {
+					method: 'pause'
+				},
 				newsList: [],
+				current: {
+					poster: 'https://bjetxgzv.cdn.bspapp.com/VKCEYUGU-uni-app-doc/7fbf26a0-4f4a-11eb-b680-7980c8a877b8.png',
+					name: '',
+					author: '',
+					src:'',
+				},
+				
 			}
 		},
 
 		onLoad() {
-
 			this.active()
+			// this.audio_previous()
 		},
 		onShow() {
 
 		},
 		methods: {
-			
+
 			active() {
 				this.$request('article/list', this.data1, 'post').then((res) => {
 					if (res.code === 200) {
 						this.newsList = res.data.items
+						this.current.src =  this.newsList.slice(0,1)[0].mp3url
+						this.current.name = this.newsList.slice(0,1)[0].title
+						this.sortId = this.newsList.slice(0,1)[0].id
 					}
+					
+					// console.log(this.newsList.slice(0,1))
 					console.log(this.newsList)
+					console.log(this.current)
 
 				})
 			},
@@ -92,6 +89,20 @@
 			next(id) {
 				uni.navigateTo({
 					url: '../newsdetail/newsDetail?id=' + id
+				})
+			},
+			audio_previous(){
+			console.log(111)
+			console.log(this.data1)
+				this.data1.params.sort=this.sortId
+				this.$request('article/audio_previous',this.data1,'POST').then((res)=>{
+					if(res.code=== 200){
+						console.log(res)
+						this.current.src=res.data.mp3url,
+						this.current.name=res.data.title
+						// console.log(this.current.src)
+					}
+					
 				})
 			}
 		}
@@ -176,75 +187,43 @@
 
 	.audio {
 		width: 100%;
-		height: 229rpx;
+		// height: 229rpx;
 		background-color: #FFFFFF;
 		position: fixed;
 		bottom: 0;
 		display: flex;
 		flex-direction: column;
+		.bofang{
+			display: flex;
+			position: fixed;
+			bottom:30rpx;
+			right: 40rpx;
+			justify-content: space-between;
+			width: 400rpx;
+			image:nth-child(1){
+				width: 24rpx;
+				height: 24rpx;
+			}
+			image:nth-child(2){
+				width: 19rpx;
+				height: 25rpx;
+			}
+			image:nth-child(3){
+				width: 24rpx;
+				height: 24rpx;
+			}
+		}
 	}
 
-	.audio_top {
-		display: flex;
-		justify-content: space-between;
-		padding: 0 36rpx;
+
+	.audio_main {
+		width: 100%;
+		// height: 100%;
 	}
 
-	.audio_img {
-		margin-top: 12rpx;
-	}
-
-	.audio_img>image {
-		width: 116rpx;
-		height: 116rpx;
-	}
-
-	.audio_right {
-		display: flex;
-		margin-top: 22rpx;
-		justify-content: space-around;
-		flex-grow: 1;
-	}
-
-	.audio_right>view {
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-	}
-
-	.audio_right>view>text,
-	.center>view>text {
-		font-size: 36rpx;
-		color: #333333;
-		font-weight: 400;
-		font-family: Source Han Sans CN;
-		margin-top: 20rpx;
-
-	}
-
-	.audio_right>view:nth-child(1)>image,
-	.audio_right>view:nth-child(3)>image {
-		width: 37rpx;
-		height: 37rpx;
+	/deep/ .uni-audio-default {
+		border: none;
+		width: 100%;
 		display: block;
-
-	}
-
-	.center>view {
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-	}
-
-	.center>view:nth-child(2) {
-		margin-top: -104rpx;
-		display: none;
-	}
-
-	.center>view>image {
-		width: 26rpx;
-		height: 35rpx;
-		display: block;
-
 	}
 </style>
